@@ -14,8 +14,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test:unit": "CI=1 react-scripts test",
-    "eject": "react-scripts eject",
-    "hello": "exit 0"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

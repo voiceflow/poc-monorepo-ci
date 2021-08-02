@@ -1,0 +1,17 @@
+version: 2.1
+
+# this allows you to use CircleCI's dynamic configuration feature
+setup: true
+
+orbs:
+  path-filtering: circleci/path-filtering@0.0.2
+
+workflows:
+  generate-config:
+    jobs:
+      - path-filtering/filter:
+          base-revision: master
+          config-path: .circleci/continue-config.yml
+          mapping: |
+            packages/app1/.* build-app1 true
+            packages/app2/.* build-app2 true

@@ -1,0 +1,93 @@
+version: 2.1
+
+parameters:
+  ssh-fingerprint:
+    type: string
+    default: "93:f8:51:53:5e:bd:75:0e:29:24:4d:6a:3f:ef:e1:4a"
+  build-creator-app:
+    type: boolean
+    default: false
+  build-app1:
+    type: boolean
+    default: false
+  build-app2:
+    type: boolean
+    default: false
+
+orbs:
+  vfcommon: voiceflow/common@0.0.178
+
+
+# Reusable YAML chunks
+defaults:
+  prod_creator_deploy_filters: &prod_creator_deploy_filters
+    filters:
+      branches:
+        ignore: /.*/
+      tags:
+        only: /^@voiceflow/creator-app@[0-9]*(\.[0-9]*)*$/
+
+  prod_admin_deploy_filters: &prod_admin_deploy_filters
+    filters:
+      branches:
+        ignore: /.*/
+      tags:
+        only: /^@voiceflow/admin-app@[0-9]*(\.[0-9]*)*$/
+
+  ignore_autorebase_staging_filters: &ignore_autorebase_staging_filters
+    branches:
+      ignore:
+        - /rebase-pull-request-.*/
+        - /cherry-pick-rebase-pull-request-.*/
+        - staging
+
+  ignore_autorebase_filters: &ignore_autorebase_filters
+    branches:
+      ignore:
+        - /rebase-pull-request-.*/
+        - /cherry-pick-rebase-pull-request-.*/
+
+jobs:
+
+  test: # Main unit, style, and dependency tests
+    executor: vfcommon/node-executor
+    steps: # a collection of executable commands
+      - checkout
+      - vfcommon/install_node_modules
+      - vfcommon/unit_tests_monorepo
+
+
+workflows:
+  test-app1:
+    when: << pipeline.parameters.build-app1 >>
+    jobs:
+      - test:
+          context: dev-test
+          filters:
+            <<: *ignore_autorebase_staging_filters
+
+  test-app2:
+    when: << pipeline.parameters.build-app2 >>
+    jobs:
+      - test:
+          context: dev-test
+          filters:
+            <<: *ignore_autorebase_staging_filters
+ 
+  test-and-release:
+    jobs:
+      - test:
+          context: dev-test
+          filters:
+            branches:
+              only: master
+
+      - vfcommon/release_monorepo:
+          avoid_post_install_scripts: false
+          ssh_key: << pipeline.parameters.ssh-fingerprint >>
+          context: dev-test
+          requires:
+            - test
+          filters:
+            branches:
+              only: master

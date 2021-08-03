@@ -3,10 +3,7 @@ name: PR Title validation
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
-  workflow_run:
-    workflows: ["Dependabot Trigger Workflow"]
-    types: 
-      - completed
+
 jobs:
   pr-validation:
     name: Checks if the PR title is valid

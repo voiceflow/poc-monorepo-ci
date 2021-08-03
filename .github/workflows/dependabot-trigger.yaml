@@ -1,0 +1,12 @@
+### This workflow doesn't have access to secrets and has a read-only token
+name: Dependabot Trigger Workflow
+on:
+  push
+
+jobs:
+  check-dependabot:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2

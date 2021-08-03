@@ -21,5 +21,8 @@
   "homepage": "https://github.com/dezkareid/lerna-monorepo-post#readme",
   "devDependencies": {
     "lerna": "^4.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.16.1"
   }
 }

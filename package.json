@@ -7,7 +7,8 @@
     "packages/*"
   ],
   "scripts": {
-    "test:unit": "lerna run test:unit --concurrency=4 --parallel"
+    "test:unit": "lerna run test:unit --concurrency=4 --parallel",
+    "sleep": "sleep 120"
   },
   "repository": {
     "type": "git",

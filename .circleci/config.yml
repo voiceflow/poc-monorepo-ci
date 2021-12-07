@@ -32,3 +32,8 @@ workflows:
           mapping: |
             packages/app1/.* build-app1 true
             packages/app2/.* build-app2 true
+          filters:
+            branches:
+              ignore:
+                - /.*staging.*/
+                - /.*trying.*/

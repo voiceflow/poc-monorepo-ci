@@ -5,10 +5,27 @@ setup: true
 
 orbs:
   path-filtering: circleci/path-filtering@0.0.2
+  vfcommon: voiceflow/common@0.0.179
+
+
+jobs:
+  sleep: # sleep
+    executor: vfcommon/node-executor
+    steps: # a collection of executable commands
+      - checkout
+      - run: |
+          yarn sleep
 
 workflows:
   generate-config:
     jobs:
+      - sleep:
+          context: dev-test
+          filters:
+            branches:
+              only:
+                - staging
+                - trying
       - path-filtering/filter:
           base-revision: master
           config-path: .circleci/continue-config.yml

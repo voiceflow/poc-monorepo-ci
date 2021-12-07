@@ -42,15 +42,6 @@ jobs:
 
 
 workflows:
-  sleep:
-    jobs:
-      - sleep:
-          context: dev-test
-          filters:
-            branches:
-              only:
-                - staging
-
   test-app1:
     when: << pipeline.parameters.build-app1 >>
     jobs:

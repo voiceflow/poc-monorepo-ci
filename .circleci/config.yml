@@ -17,7 +17,7 @@ jobs:
           yarn sleep
 
 workflows:
-  sleep:
+  generate-config:
     jobs:
       - sleep:
           context: dev-test
@@ -25,9 +25,6 @@ workflows:
             branches:
               only:
                 - staging
-
-  generate-config:
-    jobs:
       - path-filtering/filter:
           base-revision: master
           config-path: .circleci/continue-config.yml

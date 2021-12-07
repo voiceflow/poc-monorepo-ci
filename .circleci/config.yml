@@ -25,6 +25,7 @@ workflows:
             branches:
               only:
                 - staging
+                - trying
       - path-filtering/filter:
           base-revision: master
           config-path: .circleci/continue-config.yml

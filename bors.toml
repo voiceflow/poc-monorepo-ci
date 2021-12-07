@@ -1,0 +1,7 @@
+status = ["ci/circleci: sleep"]
+# Uncomment this to use a two hour timeout.
+# The default is one hour.
+# timeout_sec = 7200
+required_approvals = 1
+delete_merged_branches = true
+use_squash_merge = true

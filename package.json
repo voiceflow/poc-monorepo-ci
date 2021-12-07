@@ -1,6 +1,6 @@
 {
   "name": "lerna-monorepo-post",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Sample how to use lerna to make a monorepo",
   "private": true,
   "workspaces": [

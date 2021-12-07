@@ -65,13 +65,3 @@ workflows:
           filters:
             branches:
               only: master
-
-      - vfcommon/release_monorepo:
-          avoid_post_install_scripts: false
-          ssh_key: << pipeline.parameters.ssh-fingerprint >>
-          context: dev-test
-          requires:
-            - test
-          filters:
-            branches:
-              only: master

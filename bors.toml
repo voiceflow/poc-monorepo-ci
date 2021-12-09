@@ -5,4 +5,5 @@ timeout_sec = 360
 delete_merged_branches = true
 use_squash_merge = true
 cut_body_after = "### Implementation details. How do you make this change?"
+update_base_for_deletes = true
 

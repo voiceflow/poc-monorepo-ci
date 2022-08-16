@@ -30,7 +30,6 @@ jobs:
     steps: # a collection of executable commands
       - checkout
       - vfcommon/install_node_modules
-      - vfcommon/unit_tests_monorepo
 
   sleep: # sleep
     executor: vfcommon/node-executor

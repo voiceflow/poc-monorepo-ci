@@ -12,7 +12,7 @@ parameters:
     default: false
 
 orbs:
-  vfcommon: voiceflow/common@0.0.179
+  vfcommon: voiceflow/common@dev:5e0263bcb33fff6f7f1e3ac798db6a73a3dee230
 
 
 # Reusable YAML chunks

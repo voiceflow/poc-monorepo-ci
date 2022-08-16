@@ -5,7 +5,7 @@ setup: true
 
 orbs:
   path-filtering: circleci/path-filtering@0.0.2
-  vfcommon: voiceflow/common@dev:5e0263bcb33fff6f7f1e3ac798db6a73a3dee230
+  vfcommon: voiceflow/common@dev:314875b74f82a896bf586464a898d09af6b6d226
 
 
 jobs:
